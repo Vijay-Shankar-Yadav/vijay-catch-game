@@ -45,11 +45,12 @@
       margin-bottom: 2rem;
     }
     .hero img {
-      width: 100%;
-      max-width: 700px;
+      width: 100%;       /* takes full width of its container */
+      max-width: 100%;   /* removes the 700px limit */
       border-radius: 10px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     }
+
     .about {
       background: #f0f9ff;
       padding: 1.5rem;
@@ -100,9 +101,12 @@
   <div class="container">
 
     <section class="hero">
-      <img src="mahmain.PNG" alt="Mahmmadpur Ke Mathiya village" />
+      <img src="farmer.avif" alt="Mahmmadpur Ke Mathiya village" />
     </section>
+    <h3>📍 Our Location:</h3>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14346.705257240163!2d84.44753633935184!3d25.97865402513264!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3992ec4f96740a21%3A0x2b72733d120377a3!2sBhanpura%2C%20Bihar!5e0!3m2!1sen!2sin!4v1761383691458!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
 
+    </iframe>   
     <section id="about" class="about">
       <h2>About Our Village</h2>
       <p>
@@ -121,13 +125,25 @@
       <h2 style="color:#004aad;">Village Gallery</h2>
       <div class="gallery">
         <img src="vijayhome.jpg" alt="village photo 1" />
-        <img src="village2.jpg" alt="village photo 2" />
-        <img src="village3.jpg" alt="village photo 3" />
+        <img src="mdHigh.webp" alt="village photo 2" />
+        <img src="mdHigh2.webp" alt="village photo 3" />
         <img src="village4.jpg" alt="village photo 4" />
         <img src="village5.jpg" alt="village photo 5" />
         <img src="village6.jpg" alt="village photo 6" />
       </div>
     </section>
+
+    <section class="intro-video">
+  <h2>📹 About Mahmmadpur Ke Mathiya</h2>
+  <video controls width="400" style="max-width: 100%; border-radius: 10px;">
+    <source src="villageIntro.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <p><b>Welcome to Mahmmadpur Ke Mathiya – a peaceful village with rich culture.</b></p>
+  <p>Villager - Vijay Shankar Yadav</p>
+  <p>Software Engineer</p>
+</section>
+
 
     <section id="contact" class="about" style="margin-top:2rem;">
       <h2>Contact & Info</h2>
