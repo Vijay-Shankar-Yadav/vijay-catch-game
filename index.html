@@ -3,139 +3,146 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Catch the Ball Game</title>
+  <title>Welcome to Mahmmadpur Ke Mathiya</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
     body {
-      background: linear-gradient(180deg, #74ebd5, #acb6e5);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      overflow: hidden;
-      font-family: 'Poppins', sans-serif;
-      flex-direction: column;
-    }
-    canvas {
-      background: #fff;
-      border: 3px solid #333;
-      border-radius: 10px;
-      outline: none;
-    }
-    #scoreBoard {
-      margin-bottom: 10px;
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #fdfcfb;
       color: #333;
-      font-size: 1.2rem;
+    }
+    header {
+      background: linear-gradient(135deg, #3a7bd5, #00d2ff);
+      color: white;
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+    nav {
+      background: #004aad;
+      text-align: center;
+      padding: 0.5rem;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
       font-weight: bold;
     }
-    #startText {
-      position: absolute;
-      bottom: 30px;
-      font-size: 1rem;
-      color: #333;
-      opacity: 0.8;
+    nav a:hover {
+      text-decoration: underline;
+    }
+    .container {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+    .hero {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .hero img {
+      width: 100%;
+      max-width: 700px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+    .about {
+      background: #f0f9ff;
+      padding: 1.5rem;
+      border-radius: 10px;
+    }
+    .about h2 {
+      color: #004aad;
+    }
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 1rem;
+    }
+    .gallery img {
+      width: calc(33.333% - 10px);
+      border-radius: 8px;
+      object-fit: cover;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: #004aad;
+      color: white;
+      margin-top: 2rem;
+    }
+    @media (max-width: 700px) {
+      .gallery img {
+        width: calc(50% - 10px);
+      }
     }
   </style>
 </head>
 <body>
-    <h1>Created By-Karishma Yadav!</h1>
-    <img src="./img.PNG" width="100" height="100">
-  <div id="scoreBoard">Score: 0 | Missed: 0</div>
-  <canvas id="gameCanvas" width="400" height="500" tabindex="0"></canvas>
-  <div id="startText">Click the game box, then use ← → or A / D to move</div>
 
-  <script>
-    const canvas = document.getElementById("gameCanvas");
-    const ctx = canvas.getContext("2d");
-    const scoreBoard = document.getElementById("scoreBoard");
+  <header>
+    <h1>Welcome to Mahmmadpur Ke Mathiya</h1>
+    <p>A beautiful village full of tradition, peace, and community</p>
+  </header>
 
-    // basket and ball setup
-    let basket = { x: 160, y: 450, width: 80, height: 20, speed: 6 };
-    let ball = { x: Math.random() * 380, y: 0, radius: 10, speed: 3 };
-    let score = 0;
-    let missed = 0;
-    let gameOver = false;
-    let keys = {};
+  <nav>
+    <a href="#">Home</a>
+    <a href="#about">About</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#contact">Contact</a>
+  </nav>
 
-    // ✅ Focus canvas when clicked (required by Chrome)
-    canvas.addEventListener("click", () => {
-      canvas.focus();
-    });
+  <div class="container">
 
-    // ✅ Handle key press and release
-    canvas.addEventListener("keydown", (e) => {
-      keys[e.key] = true;
-    });
-    canvas.addEventListener("keyup", (e) => {
-      keys[e.key] = false;
-    });
+    <section class="hero">
+      <img src="mahmain.PNG" alt="Mahmmadpur Ke Mathiya village" />
+    </section>
 
-    function moveBasket() {
-      if (keys["ArrowLeft"] || keys["a"] || keys["A"]) basket.x -= basket.speed;
-      if (keys["ArrowRight"] || keys["d"] || keys["D"]) basket.x += basket.speed;
-      if (basket.x < 0) basket.x = 0;
-      if (basket.x + basket.width > canvas.width)
-        basket.x = canvas.width - basket.width;
-    }
+    <section id="about" class="about">
+      <h2>About Our Village</h2>
+      <p>
+        Mahmmadpur Ke Mathiya is a peaceful and vibrant village located in the heart of Bihar.
+        Surrounded by lush green fields, ponds, and mango trees, our village is known for its 
+        simplicity, unity, and rich cultural heritage.
+      </p>
+      <p>
+        The people here live harmoniously and celebrate all festivals with joy and togetherness.
+        Education and farming are the main focus of most families, and new development 
+        projects are helping modernize our community.
+      </p>
+    </section>
 
-    function drawBasket() {
-      ctx.fillStyle = "#333";
-      ctx.fillRect(basket.x, basket.y, basket.width, basket.height);
-    }
+    <section id="gallery">
+      <h2 style="color:#004aad;">Village Gallery</h2>
+      <div class="gallery">
+        <img src="vijayhome.jpg" alt="village photo 1" />
+        <img src="village2.jpg" alt="village photo 2" />
+        <img src="village3.jpg" alt="village photo 3" />
+        <img src="village4.jpg" alt="village photo 4" />
+        <img src="village5.jpg" alt="village photo 5" />
+        <img src="village6.jpg" alt="village photo 6" />
+      </div>
+    </section>
 
-    function drawBall() {
-      ctx.beginPath();
-      ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
-      ctx.fillStyle = "#ff4d4d";
-      ctx.fill();
-      ctx.closePath();
-    }
+    <section id="contact" class="about" style="margin-top:2rem;">
+      <h2>Contact & Info</h2>
+      <p>
+        📍 <strong>Location:</strong> Mahmmadpur Ke Mathiya,Saran,Bihar, India Pin-841223<br>
+        📞 <strong>Contact:</strong> +91-8789960230<br>
+        ✉️ <strong>Email:</strong> vijay98bablu@gmail.com
+      </p>
+    </section>
 
-    function resetBall() {
-      ball.x = Math.random() * (canvas.width - ball.radius * 2) + ball.radius;
-      ball.y = 0;
-      ball.speed = 3 + Math.random() * 2;
-    }
+  </div>
 
-    function update() {
-      if (gameOver) return;
+  <footer>
+    <p>© 2025 Mahmmadpur Ke Mathiya — All Rights Reserved.</p>
+  </footer>
 
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      moveBasket();
-      drawBasket();
-      drawBall();
-
-      ball.y += ball.speed;
-
-      if (
-        ball.y + ball.radius >= basket.y &&
-        ball.x > basket.x &&
-        ball.x < basket.x + basket.width
-      ) {
-        score++;
-        resetBall();
-      }
-
-      if (ball.y > canvas.height) {
-        missed++;
-        resetBall();
-      }
-
-      if (missed >= 3) {
-        gameOver = true;
-        scoreBoard.textContent = `Game Over! Final Score: ${score}`;
-        return;
-      }
-
-      scoreBoard.textContent = `Score: ${score} | Missed: ${missed}`;
-      requestAnimationFrame(update);
-    }
-
-    update();
-  </script>
 </body>
 </html>
