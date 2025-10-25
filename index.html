@@ -1,164 +1,208 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Welcome to Mahmmadpur Ke Mathiya</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #fdfcfb;
-      color: #333;
-    }
-    header {
-      background: linear-gradient(135deg, #3a7bd5, #00d2ff);
-      color: white;
-      text-align: center;
-      padding: 2rem 1rem;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 2.5rem;
-    }
-    nav {
-      background: #004aad;
-      text-align: center;
-      padding: 0.5rem;
-    }
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin: 0 15px;
-      font-weight: bold;
-    }
-    nav a:hover {
-      text-decoration: underline;
-    }
-    .container {
-      max-width: 900px;
-      margin: 2rem auto;
-      padding: 0 1rem;
-    }
-    .hero {
-      text-align: center;
-      margin-bottom: 2rem;
-    }
-    .hero img {
-      width: 100%;       /* takes full width of its container */
-      max-width: 100%;   /* removes the 700px limit */
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mahmmadpur Ke Mathiya</title>
+<style>
+  /* Full page background */
+  body {
+    margin: 0;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #e0f7ff;  /* Light sky-blue for entire page */
+    color: #333;
+  }
 
-    .about {
-      background: #f0f9ff;
-      padding: 1.5rem;
-      border-radius: 10px;
-    }
-    .about h2 {
-      color: #004aad;
-    }
-    .gallery {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 1rem;
-    }
+  header {
+    background: linear-gradient(135deg, #3a7bd5, #00d2ff);
+    color: white;
+    text-align: center;
+    padding: 2rem 1rem;
+  }
+
+  header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+  }
+
+  nav {
+    background: #004aad;
+    text-align: center;
+    padding: 0.5rem;
+  }
+
+  nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+  }
+
+  nav a:hover {
+    text-decoration: underline;
+  }
+
+  .container {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+  }
+
+  /* Sections styling */
+  section {
+    background-color: rgba(255, 255, 255, 0.85); /* White slightly transparent to show sky-blue behind */
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  }
+
+  .hero {
+    text-align: center;
+  }
+
+  .hero img {
+    width: 100%;
+    max-width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  }
+
+  h2, h3 {
+    color: #004aad;
+  }
+
+  .gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 1rem;
+  }
+
+  .gallery img {
+    width: calc(33.333% - 10px);
+    border-radius: 8px;
+    object-fit: cover;
+  }
+
+  .intro-video video {
+    border-radius: 10px;
+    max-width: 100%;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  }
+
+  iframe {
+    width: 100%;
+    max-width: 100%;
+    border: 0;
+    border-radius: 10px;
+    margin-top: 1rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  }
+
+  footer {
+    text-align: center;
+    padding: 1rem;
+    background: #004aad;
+    color: white;
+    margin-top: 2rem;
+  }
+
+  @media (max-width: 700px) {
     .gallery img {
-      width: calc(33.333% - 10px);
-      border-radius: 8px;
-      object-fit: cover;
+      width: calc(50% - 10px);
     }
-    footer {
-      text-align: center;
-      padding: 1rem;
-      background: #004aad;
-      color: white;
-      margin-top: 2rem;
-    }
-    @media (max-width: 700px) {
-      .gallery img {
-        width: calc(50% - 10px);
-      }
-    }
-  </style>
+  }
+</style>
 </head>
 <body>
 
-  <header>
-    <h1>Welcome to Mahmmadpur Ke Mathiya</h1>
-    <p>A beautiful village full of tradition, peace, and community</p>
-  </header>
+<header>
+  <h1>Welcome to Mahmmadpur Ke Mathiya</h1>
+  <p>A beautiful village full of tradition, peace, and community</p>
+</header>
 
-  <nav>
-    <a href="#">Home</a>
-    <a href="#about">About</a>
-    <a href="#gallery">Gallery</a>
-    <a href="#contact">Contact</a>
-  </nav>
+<nav>
+  <a href="#">Home</a>
+  <a href="#about">About</a>
+  <a href="#gallery">Gallery</a>
+  <a href="#contact">Contact</a>
+</nav>
 
-  <div class="container">
+<div class="container">
 
-    <section class="hero">
-      <img src="farmer.avif" alt="Mahmmadpur Ke Mathiya village" />
-    </section>
+  <!-- Hero Section -->
+  <section class="hero">
+    <img src="farmer.avif" alt="Mahmmadpur Ke Mathiya village" />
+  </section>
+
+  <!-- Map Section -->
+  <section class="hero">
     <h3>📍 Our Location:</h3>
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14346.705257240163!2d84.44753633935184!3d25.97865402513264!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3992ec4f96740a21%3A0x2b72733d120377a3!2sBhanpura%2C%20Bihar!5e0!3m2!1sen!2sin!4v1761383691458!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+    <iframe 
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14346.705257240163!2d84.44753633935184!3d25.97865402513264!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3992ec4f96740a21%3A0x2b72733d120377a3!2sBhanpura%2C%20Bihar!5e0!3m2!1sen!2sin!4v1761383691458!5m2!1sen!2sin" 
+      height="450" 
+      allowfullscreen="" 
+      loading="lazy" 
+      referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+  </section>
 
-    </iframe>   
-    <section id="about" class="about">
-      <h2>About Our Village</h2>
-      <p>
-        Mahmmadpur Ke Mathiya is a peaceful and vibrant village located in the heart of Bihar.
-        Surrounded by lush green fields, ponds, and mango trees, our village is known for its 
-        simplicity, unity, and rich cultural heritage.
-      </p>
-      <p>
-        The people here live harmoniously and celebrate all festivals with joy and togetherness.
-        Education and farming are the main focus of most families, and new development 
-        projects are helping modernize our community.
-      </p>
-    </section>
+  <!-- About Section -->
+  <section id="about">
+    <h2>About Our Village</h2>
+    <p>
+      Mahmmadpur Ke Mathiya is a peaceful and vibrant village located in the heart of Bihar.
+      Surrounded by lush green fields, ponds, and mango trees, our village is known for its 
+      simplicity, unity, and rich cultural heritage.
+    </p>
+    <p>
+      The people here live harmoniously and celebrate all festivals with joy and togetherness.
+      Education and farming are the main focus of most families, and new development 
+      projects are helping modernize our community.
+    </p>
+  </section>
 
-    <section id="gallery">
-      <h2 style="color:#004aad;">Village Gallery</h2>
-      <div class="gallery">
-        <img src="vijayhome.jpg" alt="village photo 1" />
-        <img src="mdHigh.webp" alt="village photo 2" />
-        <img src="mdHigh2.webp" alt="village photo 3" />
-        <img src="village4.jpg" alt="village photo 4" />
-        <img src="village5.jpg" alt="village photo 5" />
-        <img src="village6.jpg" alt="village photo 6" />
-      </div>
-    </section>
+  <!-- Gallery Section -->
+  <section id="gallery">
+    <h2>Village Gallery</h2>
+    <div class="gallery">
+      <img src="vijayhome.jpg" alt="village photo 1" />
+      <img src="mdHigh.webp" alt="village photo 2" />
+      <img src="mdHigh2.webp" alt="village photo 3" />
+      <img src="village4.jpg" alt="village photo 4" />
+      <img src="village5.jpg" alt="village photo 5" />
+      <img src="village6.jpg" alt="village photo 6" />
+    </div>
+  </section>
 
-    <section class="intro-video">
-  <h2>📹 About Mahmmadpur Ke Mathiya</h2>
-  <video controls width="400" style="max-width: 100%; border-radius: 10px;">
-    <source src="villageIntro.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-  <p><b>Welcome to Mahmmadpur Ke Mathiya – a peaceful village with rich culture.</b></p>
-  <p>Villager - Vijay Shankar Yadav</p>
-  <p>Software Engineer</p>
-</section>
+  <!-- Intro Video Section -->
+  <section class="intro-video">
+    <h2>📹 About Mahmmadpur Ke Mathiya</h2>
+    <video controls width="400">
+      <source src="villageIntro.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <p><b>Welcome to Mahmmadpur Ke Mathiya – a peaceful village with rich culture.</b></p>
+    <p>Villager - Vijay Shankar Yadav</p>
+    <p>Software Engineer</p>
+  </section>
 
+  <!-- Contact Section -->
+  <section id="contact">
+    <h2>Contact & Info</h2>
+    <p>
+      📍 <strong>Location:</strong> Mahmmadpur Ke Mathiya, Saran, Bihar, India Pin-841223<br>
+      📞 <strong>Contact:</strong> +91-8789960230<br>
+      ✉️ <strong>Email:</strong> vijay98bablu@gmail.com
+    </p>
+  </section>
 
-    <section id="contact" class="about" style="margin-top:2rem;">
-      <h2>Contact & Info</h2>
-      <p>
-        📍 <strong>Location:</strong> Mahmmadpur Ke Mathiya,Saran,Bihar, India Pin-841223<br>
-        📞 <strong>Contact:</strong> +91-8789960230<br>
-        ✉️ <strong>Email:</strong> vijay98bablu@gmail.com
-      </p>
-    </section>
+</div>
 
-  </div>
-
-  <footer>
-    <p>© 2025 Mahmmadpur Ke Mathiya — All Rights Reserved.</p>
-  </footer>
+<footer>
+  <p>© 2025 Mahmmadpur Ke Mathiya — All Rights Reserved.</p>
+</footer>
 
 </body>
 </html>
