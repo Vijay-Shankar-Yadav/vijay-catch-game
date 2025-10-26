@@ -3,38 +3,36 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Village News | Mahmmadpur Ke Mathiya</title>
+<title>Mahmmadpur Ke Mathiya News</title>
 <style>
-  body { margin: 0; font-family: "Poppins", sans-serif; background: #f0f8ff; color: #333; }
-  header { background: linear-gradient(135deg, #3a7bd5, #00d2ff); color: white; text-align: center; padding: 1.5rem; }
-  header h1 { margin: 0; font-size: 2rem; }
-  nav { text-align: center; background: #004aad; padding: 0.5rem; }
-  nav a { color: white; margin: 0 15px; text-decoration: none; font-weight: bold; }
-  nav a:hover { text-decoration: underline; }
-  .container { max-width: 800px; margin: 2rem auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-  video, img { width: 100%; border-radius: 10px; margin-top: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
-  .like-section { margin-top: 10px; display: flex; align-items: center; gap: 10px; }
-  .like-section button { background-color: #00d2ff; border: none; padding: 8px 14px; color: white; border-radius: 5px; cursor: pointer; font-weight: bold; transition: 0.3s; }
-  .like-section button:hover { background-color: #3a7bd5; transform: scale(1.05); }
-  .comment-section { margin-top: 20px; border-top: 1px solid #ddd; padding-top: 10px; }
-  .comment-section input, .comment-section textarea { width: 100%; margin-bottom: 8px; padding: 8px; border: 1px solid #ccc; border-radius: 6px; font-size: 0.9rem; }
-  .comment-btn { background-color: #4CAF50; color: white; padding: 8px 12px; border: none; border-radius: 5px; cursor: pointer; transition: 0.3s; }
-  .comment-btn:hover { background-color: #45a049; }
-  .comment { background: #f8f8f8; margin-top: 8px; padding: 6px 10px; border-radius: 5px; }
-  #toggleComments { margin-top: 8px; cursor: pointer; color: #004aad; text-decoration: underline; display: none; font-size: 0.9rem; }
-  footer { text-align: center; background: #004aad; color: white; padding: 1rem; margin-top: 3rem; }
-  @media (max-width: 600px) { .container { width: 90%; } header h1 { font-size: 1.6rem; } }
+body { font-family: Arial, sans-serif; margin:0; background:#e0f7ff; color:#333; }
+header { background: linear-gradient(135deg,#3a7bd5,#00d2ff); color:white; text-align:center; padding:2rem 1rem;}
+header h1 { margin:0; font-size:2rem; }
+nav { background:#004aad; text-align:center; padding:0.5rem; }
+nav a { color:white; text-decoration:none; margin:0 10px; font-weight:bold; }
+nav a:hover { text-decoration:underline; }
+.container { max-width:900px; margin:2rem auto; padding:1rem; background:white; border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,0.1);}
+.container img, .container video { width:100%; border-radius:10px; margin-top:10px; box-shadow:0 4px 10px rgba(0,0,0,0.2);}
+.like-section { margin-top:10px; display:flex; align-items:center; gap:10px; }
+.like-section button { background:#00d2ff; border:none; padding:8px 14px; color:white; border-radius:5px; cursor:pointer; font-weight:bold; }
+.like-section button:hover { background:#3a7bd5; transform:scale(1.05); }
+.comment-section { margin-top:20px; border-top:1px solid #ddd; padding-top:10px;}
+.comment-section input, .comment-section textarea { width:100%; margin-bottom:8px; padding:8px; border:1px solid #ccc; border-radius:6px; }
+.comment-btn { background:#4CAF50; color:white; padding:8px 12px; border:none; border-radius:5px; cursor:pointer; }
+.comment-btn:hover { background:#45a049; }
+.comment { background:#f8f8f8; margin-top:8px; padding:6px 10px; border-radius:5px; }
+footer { text-align:center; padding:1rem; background:#004aad; color:white; margin-top:2rem;}
 </style>
 </head>
 <body>
 
 <header>
-  <h1>📰 Village News Updates</h1>
+  <h1>📰 Mahmmadpur Ke Mathiya News</h1>
 </header>
 
 <nav>
   <a href="index.html">Home</a>
-  <a href="contact.html">Contact Us</a>
+  <a href="contact.html">Contact</a>
 </nav>
 
 <div id="newsContainer"></div>
@@ -44,129 +42,83 @@
 </footer>
 
 <script>
-fetch("newsData.json")
-  .then(res => res.json())
-  .then(data => {
-    const container = document.getElementById("newsContainer");
+const BACKEND_URL = "https://backendgame-0nir.onrender.com";
 
-    data.forEach((news, index) => {
-      const newsId = `news-${index}`;
-      const likes = localStorage.getItem(`${newsId}-likes`) || 0;
-      const comments = JSON.parse(localStorage.getItem(`${newsId}-comments`) || "[]");
+const container = document.getElementById("newsContainer");
 
-      const newsDiv = document.createElement("div");
-      newsDiv.className = "container";
+async function loadNews() {
+  const res = await fetch(`${BACKEND_URL}/news`);
+  const data = await res.json();
+  container.innerHTML = "";
 
-      let mediaHTML = "";
-      if (news.image) mediaHTML += `<img src="${news.image}" alt="${news.title}">`;
-      if (news.video) mediaHTML += `<video controls><source src="${news.video}" type="video/mp4"></video>`;
+  data.forEach(news => {
+    const newsDiv = document.createElement("div");
+    newsDiv.className = "container";
 
-      newsDiv.innerHTML = `
-        <h2>${news.title}</h2>
-        <p>${news.content}</p>
-        ${mediaHTML}
-        
-        <div class="like-section">
-          <button id="${newsId}-likeBtn">👍 Like</button>
-          <span id="${newsId}-likeCount">${likes}</span> Likes
-        </div>
+    let mediaHTML = "";
+    if(news.image) mediaHTML += `<img src="${news.image}" alt="${news.title}">`;
+    if(news.video) mediaHTML += `<video controls><source src="${news.video}" type="video/mp4"></video>`;
 
-        <div class="comment-section">
-          <h3>💬 Comments</h3>
-          <input type="text" id="${newsId}-name" placeholder="Your Name">
-          <textarea id="${newsId}-comment" placeholder="Your Comment"></textarea>
-          <button class="comment-btn" onclick="addComment('${newsId}')">Post Comment</button>
-          <div id="${newsId}-commentsList"></div>
-          <div id="${newsId}-toggleComments"></div>
-        </div>
-        <small style="color:gray;">🕒 ${new Date().toLocaleString()}</small>
-      `;
+    newsDiv.innerHTML = `
+      <h2>${news.title}</h2>
+      <p>${news.content}</p>
+      ${mediaHTML}
+      <div class="like-section">
+        <button onclick="likeNews('${news._id}', this)">👍 Like</button>
+        <span>${news.likes}</span> Likes
+      </div>
+      <div class="comment-section">
+        <input type="text" placeholder="Your Name" id="name-${news._id}">
+        <textarea placeholder="Your Comment" id="comment-${news._id}"></textarea>
+        <button class="comment-btn" onclick="addComment('${news._id}')">Post Comment</button>
+        <div id="comments-${news._id}"></div>
+      </div>
+    `;
 
-      container.appendChild(newsDiv);
-
-      // Load comments
-      const commentsList = document.getElementById(`${newsId}-commentsList`);
-      const toggleBtn = document.getElementById(`${newsId}-toggleComments`);
-
-      function renderComments() {
-        const allComments = JSON.parse(localStorage.getItem(`${newsId}-comments`) || "[]");
-        const showAll = localStorage.getItem(`${newsId}-showAll`) === "true";
-
-        commentsList.innerHTML = "";
-        let visibleComments = allComments;
-        if (!showAll && allComments.length > 5) {
-          visibleComments = allComments.slice(allComments.length - 5);
-          toggleBtn.style.display = "block";
-          toggleBtn.innerText = `Show ${allComments.length - 5} Older Comments`;
-        } else {
-          toggleBtn.style.display = allComments.length > 5 ? "block" : "none";
-          toggleBtn.innerText = "Hide Older Comments";
-        }
-
-        visibleComments.forEach(c => {
-          const div = document.createElement("div");
-          div.className = "comment";
-          div.innerHTML = `<strong>${c.name}</strong>: ${c.text}`;
-          commentsList.appendChild(div);
-        });
-      }
-
-      renderComments();
-
-      toggleBtn.addEventListener("click", () => {
-        const showAll = localStorage.getItem(`${newsId}-showAll`) === "true";
-        localStorage.setItem(`${newsId}-showAll`, !showAll);
-        renderComments();
-      });
-
-      // Like button
-      document.getElementById(`${newsId}-likeBtn`).addEventListener("click", () => {
-        let count = parseInt(localStorage.getItem(`${newsId}-likes`) || 0) + 1;
-        localStorage.setItem(`${newsId}-likes`, count);
-        document.getElementById(`${newsId}-likeCount`).innerText = count;
-      });
-    });
-  });
-
-function addComment(newsId) {
-    const nameField = document.getElementById(`${newsId}-name`);
-    const commentField = document.getElementById(`${newsId}-comment`);
-
-    const name = nameField.value.trim();
-    const text = commentField.value.trim();
-    if (!name || !text) return alert("Please enter your name and comment!");
-
-    const stored = JSON.parse(localStorage.getItem(`${newsId}-comments`) || "[]");
-    stored.push({ name, text });
-    localStorage.setItem(`${newsId}-comments`, JSON.stringify(stored));
-    localStorage.setItem(`${newsId}-showAll`, "false");
-
-    nameField.value = "";
-    commentField.value = "";
-
-    const toggleBtn = document.getElementById(`${newsId}-toggleComments`);
-    const commentsList = document.getElementById(`${newsId}-commentsList`);
-
-    // Re-render comments dynamically
-    const allComments = JSON.parse(localStorage.getItem(`${newsId}-comments`) || "[]");
-    let visibleComments = allComments.slice(Math.max(allComments.length - 5, 0));
-
-    commentsList.innerHTML = "";
-    visibleComments.forEach(c => {
+    const commentsDiv = newsDiv.querySelector(`#comments-${news._id}`);
+    news.comments.forEach(c => {
       const div = document.createElement("div");
       div.className = "comment";
       div.innerHTML = `<strong>${c.name}</strong>: ${c.text}`;
-      commentsList.appendChild(div);
+      commentsDiv.appendChild(div);
     });
 
-    // Show toggle if more than 5
-    if (allComments.length > 5) {
-      toggleBtn.style.display = "block";
-      toggleBtn.innerText = `Show ${allComments.length - 5} Older Comments`;
-    } else {
-      toggleBtn.style.display = "none";
-    }
+    container.appendChild(newsDiv);
+  });
 }
+
+async function likeNews(id, btn) {
+  const res = await fetch(`${BACKEND_URL}/news/${id}/like`, { method: "POST" });
+  const data = await res.json();
+  btn.nextElementSibling.innerText = data.likes;
+}
+
+async function addComment(id) {
+  const name = document.getElementById(`name-${id}`).value.trim();
+  const text = document.getElementById(`comment-${id}`).value.trim();
+  if(!name || !text) return alert("Enter name and comment!");
+
+  const res = await fetch(`${BACKEND_URL}/news/${id}/comment`, {
+    method:"POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ name, text })
+  });
+  const comments = await res.json();
+
+  const commentsDiv = document.getElementById(`comments-${id}`);
+  commentsDiv.innerHTML = "";
+  comments.forEach(c => {
+    const div = document.createElement("div");
+    div.className = "comment";
+    div.innerHTML = `<strong>${c.name}</strong>: ${c.text}`;
+    commentsDiv.appendChild(div);
+  });
+
+  document.getElementById(`name-${id}`).value = "";
+  document.getElementById(`comment-${id}`).value = "";
+}
+
+loadNews();
 </script>
 
 </body>
